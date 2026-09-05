@@ -5,9 +5,6 @@
 Отлично! Для минимального README.md в Notepad++ подойдет следующая структура.
 
 
-
-```markdown
-
 \# condition-service
 
 
@@ -70,7 +67,6 @@ helm uninstall my-condition-service
 
 ```
 
-```
 
 
 

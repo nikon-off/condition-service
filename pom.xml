@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.9</version>
-        <relativePath/>
+        <relativePath />
     </parent>
 
     <groupId>com.conditionservice</groupId>
@@ -20,6 +20,9 @@
     <properties>
         <java.version>21</java.version>
         <logstash-logback-encoder.version>9.0</logstash-logback-encoder.version>
+        <!-- Версия Flyway управляется BOM Spring Boot 3.5.9; для Maven-плагина указываем явно,
+             чтобы она совпадала с flyway-core/flyway-database-postgresql -->
+        <flyway.version>11.7.2</flyway.version>
     </properties>
 
     <dependencies>
@@ -109,6 +112,24 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Flyway Maven plugin: позволяет запускать mvn flyway:migrate для локальной БД.
+                 URL/user соответствуют dev-профилю (application-dev.yml).
+                 Пароль берётся из переменной окружения DB_PASSWORD (см. .env), не хардкодим. -->
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <url>jdbc:postgresql://localhost:5432/condition_service</url>
+                    <user>cs_user</user>
+                    <password>${env.DB_PASSWORD}</password>
+                    <locations>
+                        <location>filesystem:src/main/resources/db/migration</location>
+                    </locations>
+                    <baselineOnMigrate>true</baselineOnMigrate>
+                </configuration>
             </plugin>
         </plugins>
     </build>

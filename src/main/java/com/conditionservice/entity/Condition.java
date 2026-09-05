@@ -20,6 +20,9 @@ import java.util.Objects;
  * <p>
  * Таблица {@code conditions}: payload хранится в JSONB; для оператора containment
  * ({@code @>}) на колонке создан GIN-индекс с jsonb_path_ops.
+ * <p>
+ * Поле {@code conditionKey} — уникальный бизнес-ключ условия, синхронизированное
+ * с контрактом API ({@link com.conditionservice.dto.request.CreateConditionDto}).
  */
 @Entity
 @Table(name = "conditions")
@@ -28,6 +31,10 @@ public class Condition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    /** Бизнес-ключ условия (уникален). Колонка добавлена миграцией V2. */
+    @Column(name = "condition_key", nullable = false, unique = true, length = 255)
+    private String conditionKey;
 
     /** JSONB-структура условия (объект). Маппинг на JSONB через Hibernate SqlTypes.JSON. */
     @JdbcTypeCode(SqlTypes.JSON)
@@ -46,7 +53,8 @@ public class Condition {
         // Для JPA/Hibernate
     }
 
-    public Condition(JsonNode payload) {
+    public Condition(String conditionKey, JsonNode payload) {
+        this.conditionKey = conditionKey;
         this.payload = payload;
     }
 
@@ -56,6 +64,14 @@ public class Condition {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getConditionKey() {
+        return conditionKey;
+    }
+
+    public void setConditionKey(String conditionKey) {
+        this.conditionKey = conditionKey;
     }
 
     public JsonNode getPayload() {
@@ -102,6 +118,7 @@ public class Condition {
     public String toString() {
         return "Condition{" +
                 "id=" + id +
+                ", conditionKey='" + conditionKey + '\'' +
                 ", payload=" + payload +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

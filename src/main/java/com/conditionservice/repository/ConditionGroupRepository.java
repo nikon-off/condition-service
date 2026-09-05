@@ -27,7 +27,8 @@ public interface ConditionGroupRepository extends JpaRepository<ConditionGroup, 
      * Используется GIN-индекс на колонке {@code conditions.payload} (jsonb_path_ops).
      * <b>Важно:</b> containment ({@code @>}) выполняется только нативно — через JPA
      * Criteria это сделать нельзя. Параметр приводится к {@code jsonb} явным CAST,
-     * чтобы оператор {@code @>} был корректно разрешён.
+     * чтобы оператор {@code @>} был корректно разрешён. Тип значений учитывается
+     * (число 5000 ≠ строка "5000"), а лишние поля входящего объекта игнорируются.
      *
      * @param groupId          идентификатор группы условий
      * @param incomingPayload  JSON-объект (строка), проверяемый на containment
@@ -42,4 +43,20 @@ public interface ConditionGroupRepository extends JpaRepository<ConditionGroup, 
             """, nativeQuery = true)
     long countMatchingConditions(@Param("groupId") Long groupId,
                                  @Param("incomingPayload") String incomingPayload);
+
+    /**
+     * Общее количество условий, привязанных к группе.
+     * <p>
+     * Используется для определения «пустой группы» (0 условий → результат
+     * {@code matched=false}) и для сравнения с количеством совпавших условий.
+     *
+     * @param groupId идентификатор группы условий
+     * @return количество условий в группе (0, если группа пуста)
+     */
+    @Query(value = """
+            SELECT COUNT(*)
+            FROM group_conditions gc
+            WHERE gc.group_id = :groupId
+            """, nativeQuery = true)
+    long countConditionsByGroupId(@Param("groupId") Long groupId);
 }

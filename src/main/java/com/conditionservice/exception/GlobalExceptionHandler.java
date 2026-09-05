@@ -10,15 +10,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Глобальный обработчик ошибок валидации входящих DTO.
+ * Глобальный обработчик ошибок.
  *
- * <p>Перехватывает {@link MethodArgumentNotValidException} (выбрасывается Spring MVC,
- * когда тело {@code @RequestBody} не проходит Jakarta Bean Validation) и собирает все
- * ошибки валидации в единый ответ с кодом {@code 400 BAD_REQUEST}.</p>
+ * <p>Обрабатывает:
+ * <ul>
+ *   <li>{@link MethodArgumentNotValidException} — ошибки валидации входящих DTO
+ *       (HTTP {@code 400 BAD_REQUEST});</li>
+ *   <li>{@link GroupNotFoundException} — отсутствие группы условий (HTTP {@code 404}).</li>
+ * </ul></p>
  *
- * <p>Формат ответа: {@code Map<String, String>}, где ключ — имя поля DTO,
- * значение — сообщение об ошибке на русском языке. Порядок сохраняется
- * благодаря {@link LinkedHashMap}.</p>
+ * <p>Формат ответа для валидации: {@code Map<String, String>}, где ключ — имя поля DTO,
+ * значение — сообщение об ошибке. Порядок сохраняется благодаря {@link LinkedHashMap}.</p>
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -38,5 +40,18 @@ public class GlobalExceptionHandler {
                 errors.put(error.getField(), error.getDefaultMessage()));
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    /**
+     * Обрабатывает отсутствие группы условий по переданному ключу.
+     *
+     * @param ex исключение «группа не найдена»
+     * @return ответ с HTTP 404 и сообщением об ошибке
+     */
+    @ExceptionHandler(GroupNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleGroupNotFound(GroupNotFoundException ex) {
+        Map<String, String> body = new LinkedHashMap<>();
+        body.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 }

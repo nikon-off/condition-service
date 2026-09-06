@@ -1,0 +1,25 @@
+# Артефакты сборки Maven (не попадают в build-context)
+target/
+
+# Окружение и секреты
+.env
+.env.*
+!.env.example
+
+# Логи
+*.log
+
+# VCS
+.git
+.gitignore
+.gitattributes
+.idea/
+.vscode/
+
+# Docker (не передавать предыдущие образы/специфику внутрь контекста)
+Dockerfile
+.dockerignore
+
+# Документация и Helm-чарт не нужны внутри Java-образа
+README.md
+condition-service-chart/

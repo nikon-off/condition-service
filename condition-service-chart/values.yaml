@@ -7,11 +7,14 @@ replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/images/
 image:
-  repository: nginx
+  repository: condition-service
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
+
+# Порт контейнера приложения (Spring Boot server.port). Совпадает с EXPOSE 8080 в Dockerfile.
+containerPort: 8080
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
@@ -41,20 +44,36 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
+# securityContext контейнера. Dockerfile создаёт non-root пользователя UID 1000,
+# поэтому запуск разрешён от непривилегированного пользователя.
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   type: ClusterIP
-  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services/networking/service/#spec-ports
-  port: 80
+  # Это порт Service (ClusterIP). targetPort ссылается на именованный контейнерный порт "http" (= containerPort).
+  port: 8080
+
+# Переменные окружения контейнера. Для локального теста пароль указан напрямую.
+# ⚠️ ВАЖНО для продакшена: значения БД должны браться из Kubernetes Secret через secretKeyRef,
+# а не храниться в values.yaml. Здесь envFromSecret оставлен для будущего расширения.
+env:
+  SPRING_PROFILES_ACTIVE: "prod"
+  # host.docker.internal НЕ резолвится внутри подов Kind (Kind не инжектирует его в поды).
+  # Доступ к БД на хосте идёт через шлюз docker-сети Kind (172.20.0.1), куда опубликован
+  # порт PostgreSQL (0.0.0.0:5432).
+  DB_URL: "jdbc:postgresql://172.20.0.1:5432/condition_service"
+  DB_USERNAME: "cs_user"
+  DB_PASSWORD: "CsUserPass2026"
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
@@ -111,19 +130,16 @@ httpRoute:
   #     - name: version
   #       value: v2
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them accordingly, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+# Ресурсные лимиты/запросы. Требование задачи: requests >= 250m CPU и 512Mi RAM.
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 250m
+    memory: 512Mi
 
-# Liveness/Readiness probes интеграции с Spring Boot Actuator (K8s Probes).
+# Liveness/Readiness пробы интеграции с Spring Boot Actuator (K8s Probes).
 # Требуют включённых health-групп: management.endpoint.health.probes.enabled=true.
 livenessProbe:
   httpGet:

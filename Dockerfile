@@ -17,20 +17,8 @@ COPY src ./src
 RUN mvn package -DskipTests -B
 
 # ============================================================================
-# Stage 2: Extract — извлечение слоёв из fat-jar (spring-boot jarmode tools)
-# Для эффективного кэширования слоёв образа: стабильные слои (dependencies,
-# spring-boot-loader) переиспользуются, меняется только слой application.
-# ============================================================================
-FROM eclipse-temurin:21-jdk-alpine AS extractor
-WORKDIR /app
-
-# jarmode=tools: извлекает слои (dependencies, snapshot-dependencies,
-# spring-boot-loader, application) в отдельные директории под /extracted
-COPY --from=build /app/target/*.jar app.jar
-RUN java -Djarmode=tools -jar app.jar extract --layers --destination extracted
-
-# ============================================================================
-# Stage 3: Run — минимальный рантайм (JRE 21 alpine), non-root пользователь
+# Stage 2: Run — минимальный рантайм (JRE 21 alpine), non-root пользователь
+# Запуск напрямую через `java -jar` (fat-jar, уже содержит spring-boot-loader).
 # ============================================================================
 FROM eclipse-temurin:21-jre-alpine
 
@@ -40,11 +28,8 @@ RUN addgroup -S spring && adduser -S spring -G spring -u 1000
 
 WORKDIR /app
 
-# Копируем слои в порядке от наименее изменяемых к наиболее изменяемым
-COPY --from=extractor /app/extracted/dependencies/ ./
-COPY --from=extractor /app/extracted/spring-boot-loader/ ./
-COPY --from=extractor /app/extracted/snapshot-dependencies/ ./
-COPY --from=extractor /app/extracted/application/ ./
+# Копируем собранный fat-jar
+COPY --from=build /app/target/*.jar app.jar
 
 # Порт по умолчанию (server.port не задан в application.yml -> 8080)
 EXPOSE 8080
@@ -56,5 +41,5 @@ ENV TZ=UTC \
 # Запуск от non-root пользователя
 USER spring:spring
 
-# Старт приложения из извлечённых слоёв через официальный Spring Boot JarLauncher
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS org.springframework.boot.loader.launch.JarLauncher"]
+# Старт приложения (JarLauncher вызывается внутри fat-jar автоматически)
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]

@@ -5,9 +5,8 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 
-  # Включаем под-профиль "json" для structured (JSON) логирования
-  profiles:
-    include: json
+  # Подпрофиль "json" (structured JSON-логирование) активируется автоматически
+  # через spring.profiles.group.prod=json в application.yml (Spring Boot 3).
 
 logging:
   level:

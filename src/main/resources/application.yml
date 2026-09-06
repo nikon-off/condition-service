@@ -5,6 +5,13 @@ spring:
   # Активный профиль по умолчанию; переопределяется через SPRING_PROFILES_ACTIVE
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
+    # Группы профилей (Spring Boot 3):
+    # при активации "prod" автоматически включается подпрофиль "json"
+    # (structured JSON-логирование, см. logback-spring.xml).
+    # NB: spring.profiles.include нельзя объявлять в profile-specific файле
+    # (application-{profile}.yml), поэтому группа задаётся здесь.
+    group:
+      prod: json
 
   # Виртуальные потоки (Java 21+)
   threads:

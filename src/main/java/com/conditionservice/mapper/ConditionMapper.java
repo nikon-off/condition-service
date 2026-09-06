@@ -2,6 +2,8 @@ package com.conditionservice.mapper;
 
 import com.conditionservice.dto.request.CreateConditionDto;
 import com.conditionservice.dto.request.CreateGroupDto;
+import com.conditionservice.dto.response.ConditionResponseDto;
+import com.conditionservice.dto.response.GroupResponseDto;
 import com.conditionservice.entity.Condition;
 import com.conditionservice.entity.ConditionGroup;
 
@@ -44,5 +46,34 @@ public final class ConditionMapper {
                 dto.getGroupKey(),   // name ← подставляем business-ключ (в DTO нет name)
                 dto.getDescription() // description (nullable)
         );
+    }
+
+    /**
+     * Преобразует сущность {@link Condition} в ответное представление.
+     *
+     * @param condition сущность условия
+     * @return ответный DTO
+     */
+    public static ConditionResponseDto toResponse(Condition condition) {
+        return new ConditionResponseDto(
+                condition.getConditionKey(),
+                condition.getPayload(),
+                condition.getCreatedAt(),
+                condition.getUpdatedAt());
+    }
+
+    /**
+     * Преобразует сущность {@link ConditionGroup} в ответное представление.
+     *
+     * @param group сущность группы
+     * @return ответный DTO
+     */
+    public static GroupResponseDto toResponse(ConditionGroup group) {
+        return new GroupResponseDto(
+                group.getKey(),
+                group.getName(),
+                group.getDescription(),
+                group.getCreatedAt(),
+                group.getUpdatedAt());
     }
 }

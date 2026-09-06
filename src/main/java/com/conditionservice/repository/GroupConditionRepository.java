@@ -10,4 +10,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Первичный ключ — составной {@link GroupConditionId} (group_id, condition_id).
  */
 public interface GroupConditionRepository extends JpaRepository<GroupCondition, GroupConditionId> {
+
+    /**
+     * Удаляет все связи «условие ↔ группа» для указанной группы.
+     * <p>Используется в идемпотентной операции полной замены состава группы
+     * (PUT /v1/groups/{key}/conditions): сначала старые связи удаляются,
+     * затем создаются новые.</p>
+     *
+     * @param groupId идентификатор группы условий
+     */
+    void deleteByGroup_Id(Long groupId);
 }

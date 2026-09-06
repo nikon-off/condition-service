@@ -16,7 +16,8 @@ import java.util.Map;
  * <ul>
  *   <li>{@link MethodArgumentNotValidException} — ошибки валидации входящих DTO
  *       (HTTP {@code 400 BAD_REQUEST});</li>
- *   <li>{@link GroupNotFoundException} — отсутствие группы условий (HTTP {@code 404}).</li>
+ *   <li>{@link GroupNotFoundException} — отсутствие группы условий (HTTP {@code 404});</li>
+ *   <li>{@link ConditionNotFoundException} — отсутствие условия отбора (HTTP {@code 404}).</li>
  * </ul></p>
  *
  * <p>Формат ответа для валидации: {@code Map<String, String>}, где ключ — имя поля DTO,
@@ -50,6 +51,19 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(GroupNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleGroupNotFound(GroupNotFoundException ex) {
+        Map<String, String> body = new LinkedHashMap<>();
+        body.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
+    /**
+     * Обрабатывает отсутствие условия отбора по переданному бизнес-ключу.
+     *
+     * @param ex исключение «условие не найдено»
+     * @return ответ с HTTP 404 и сообщением об ошибке
+     */
+    @ExceptionHandler(ConditionNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleConditionNotFound(ConditionNotFoundException ex) {
         Map<String, String> body = new LinkedHashMap<>();
         body.put("error", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);

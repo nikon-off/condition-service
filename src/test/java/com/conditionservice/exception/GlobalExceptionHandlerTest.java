@@ -48,4 +48,24 @@ class GlobalExceptionHandlerTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertTrue(response.getBody() != null && response.getBody().isEmpty());
     }
+
+    @Test
+    void shouldReturnNotFoundForGroup() {
+        ResponseEntity<Map<String, String>> response =
+                handler.handleGroupNotFound(new GroupNotFoundException("group-1"));
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals("Группа условий с ключом 'group-1' не найдена",
+                response.getBody().get("error"));
+    }
+
+    @Test
+    void shouldReturnNotFoundForCondition() {
+        ResponseEntity<Map<String, String>> response =
+                handler.handleConditionNotFound(new ConditionNotFoundException("cond-1"));
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals("Условие отбора с ключом 'cond-1' не найдено",
+                response.getBody().get("error"));
+    }
 }

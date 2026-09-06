@@ -54,12 +54,20 @@ management:
         include: health,info,metrics,prometheus
   endpoint:
     health:
+      # "always" — для dev-профиля (детали здоровых/больных компонентов).
+      # В prod (application-prod.yml) переопределено на "never".
       show-details: always
       probes:
+        # Включаем группы liveness/readiness вне Kubernetes (для K8s Probes):
+        #   /actuator/health/liveness
+        #   /actuator/health/readiness
         enabled: true
   info:
     env:
       enabled: true
+    # Выводим полный git.properties (branch, commit.id, commit.time) в /actuator/info
+    git:
+      mode: full
   metrics:
     tags:
       application: ${spring.application.name}
@@ -68,4 +76,6 @@ info:
   app:
     name: ${spring.application.name}
     description: Сервис проверки условий отбора (Condition Checking Service)
+    # Подставляется Maven'ом при сборке (@...@ фильтрация включена в spring-boot-starter-parent)
+    version: @project.version@
     java-version: ${java.version}

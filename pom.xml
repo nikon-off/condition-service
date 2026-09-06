@@ -114,6 +114,19 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
+            <!-- Генерация git.properties на этапе сборки для /actuator/info
+                 (branch, commit.id, commit.time). Версия плагина управляется
+                 spring-boot-starter-parent. failOnNoGitDirectory=false — не падаем,
+                 если сборка идёт вне git-репозитория (например, в CI без .git). -->
+            <plugin>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <configuration>
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                    <verbose>false</verbose>
+                </configuration>
+            </plugin>
+
             <!-- Flyway Maven plugin: позволяет запускать mvn flyway:migrate для локальной БД.
                  URL/user соответствуют dev-профилю (application-dev.yml).
                  Пароль берётся из переменной окружения DB_PASSWORD (см. .env), не хардкодим. -->

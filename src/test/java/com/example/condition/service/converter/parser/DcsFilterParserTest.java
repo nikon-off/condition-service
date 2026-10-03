@@ -2,11 +2,14 @@ package com.example.condition.service.converter.parser;
 
 import com.example.condition.service.converter.dto.CanonicalConditionDto;
 import com.example.condition.service.converter.dto.RuleDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -151,6 +154,41 @@ class DcsFilterParserTest {
         assertEquals("EQ", second.getOperator());
         assertEquals(List.of("342ec861-3f65-11e6-9e61-7824af33beda"), second.getValues(),
                 "Текст <right> с локальным xmlns:d4p1 извлекается без учёта атрибутов");
+    }
+
+    @Test
+    void testParseRealWorldXml() throws Exception {
+        // Реальный XML-фильтр условия «ОСАГО Перестрахование», извлечённый из
+        // test_to_json_condition.docx (поле xmlFilter): полный <Settings> с
+        // секцией <selection> (UI-шум) и <filter> из двух FilterItemComparison.
+        String xml = new String(
+                getClass().getResourceAsStream("/test-filter.xml").readAllBytes(),
+                StandardCharsets.UTF_8);
+
+        CanonicalConditionDto result = parser.parse(xml);
+
+        assertNotNull(result, "Реальный XML должен парситься в непустой результат");
+        assertEquals("AND", result.getLogic(),
+                "Два сравнения напрямую в filter без группы → AND (дефолт DCS)");
+        assertEquals(2, result.getRules().size(),
+                "Секция <selection> (UI-шум) не должна попадать в правила");
+
+        RuleDto first = result.getRules().get(0);
+        assertEquals("ПерестрахованиеРСА", first.getField());
+        assertEquals("EQ", first.getOperator());
+        assertEquals(List.of("false"), first.getValues(),
+                "xs:boolean false становится строкой \"false\"");
+
+        RuleDto second = result.getRules().get(1);
+        assertEquals("СтраховойПродукт", second.getField());
+        assertEquals("EQ", second.getOperator());
+        assertEquals(List.of("342ec861-3f65-11e6-9e61-7824af33beda"), second.getValues(),
+                "Текст <right> с локальным xmlns:d4p1 извлекается без учёта атрибутов");
+
+        String json = new ObjectMapper().writeValueAsString(result);
+        assertTrue(json.startsWith("{"),
+                "DTO должен сериализоваться в JSON-объект {..}, а не массив; фактически: " + json);
+        assertTrue(json.endsWith("}"), "JSON должен заканчиваться на '}'");
     }
 
     @Test

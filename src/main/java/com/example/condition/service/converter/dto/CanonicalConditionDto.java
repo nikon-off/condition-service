@@ -1,5 +1,6 @@
 package com.example.condition.service.converter.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
@@ -21,7 +22,13 @@ import java.util.List;
  *
  * <p>
  * Пример значения {@code logic}: {@code "OR"}, {@code "AND"}.
+ *
+ * <p>
+ * Класс помечен {@link JsonInclude.Include#NON_NULL}: null-поля не
+ * сериализуются, что гарантирует валидность JSONB-констрейнта БД
+ * {@code jsonb_typeof(payload) = 'object'} (payload всегда JSON-объект).
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CanonicalConditionDto {
 
     @JsonProperty("logic")

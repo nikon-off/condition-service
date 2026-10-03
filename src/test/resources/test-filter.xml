@@ -1,0 +1,1344 @@
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Settings">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>удалить_ДатаВвода</field>
+			<title>(Не используется) дата ввода</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Удалить_ЛогинАгентаB2B</field>
+			<title>(Не используется) логин агента B2B</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Удалить_ПрофильПользователяB2B</field>
+			<title>(Не используется) профиль пользователя B2B</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Удалить_Распечатан</field>
+			<title>(Не используется) Распечатан</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Удалить_ДатаСоздания</field>
+			<title>(Не используется)дата создания</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>EmailОтправлен</field>
+			<title>Email отправлен</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>UIDДокумента</field>
+			<title>UIDДокумента</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>UIDПереносаСправочника</field>
+			<title>UIDПереноса справочника</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Автозапуск</field>
+			<title>Автозапуск, турботаймер</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Автопарк</field>
+			<title>Автопарк</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Ответственный</field>
+			<title>Автор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Агенты</field>
+			<title>Агенты</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>АктОсмотраПриложен</field>
+			<title>Акт осмотра приложен</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>АндеррайтерскийКоэффициент</field>
+			<title>Андеррайтерский коэффициент</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>БазоваяКомиссия</field>
+			<title>Базовая комиссия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>БазовыйТариф</field>
+			<title>Базовый тариф</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>БезубыточнаяПролонгацияКоличествоЛет</field>
+			<title>Безубыточная пролонгация количество лет</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>БезубыточнаяПролонгацияПереход</field>
+			<title>Безубыточная пролонгация переход</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Безубыточный</field>
+			<title>Безубыточный</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Бланки</field>
+			<title>Бланки</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>БонусныеДни</field>
+			<title>Бонусные дни</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Валюта</field>
+			<title>Валюта</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВариантМультидрайва</field>
+			<title>Вариант мультидрайва</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВариантНС</field>
+			<title>Вариант НС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВариантПолученияКБМ</field>
+			<title>Вариант получения КБМ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВариантРасчетаПремии</field>
+			<title>Вариант расчета премии</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВариантУстановкиПериодаОтветственности</field>
+			<title>Вариант установки периода ответственности</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Век21_КроссДоговор</field>
+			<title>Век21 кросс договор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВерсияДанных</field>
+			<title>Версия данных</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидБСО</field>
+			<title>Вид БСО</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидДоговора</field>
+			<title>Вид договора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидДокументаОсмотра</field>
+			<title>Вид документа осмотра</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидОплаты</field>
+			<title>Вид оплаты</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидПолученияОформленногоПолиса</field>
+			<title>Вид получения оформленного полиса</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидСпорта</field>
+			<title>Вид спорта</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидФраншизы</field>
+			<title>Вид франшизы</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидыСпорта</field>
+			<title>Виды спорта</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВнешнийПользователь</field>
+			<title>Внешний пользователь</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВозрастМультидрайв</field>
+			<title>Возраст мультидрайв</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВремяДействияСтраховойЗащиты</field>
+			<title>Время действия страховой защиты</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВремяНачалаДействияДопСоглашения</field>
+			<title>Время начала действия доп. соглашения</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВыборОднойПрограммыСтрахования</field>
+			<title>Выбор одной программы страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВыводитьНаПечатьОсобыеОтметки</field>
+			<title>Выводить на печать особые отметки</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Выгодоприобретатели</field>
+			<title>Выгодоприобретатели</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Выгодоприобретатель</field>
+			<title>Выгодоприобретатель</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>МОЛПоБСО</field>
+			<title>Выдал</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВыданаКартаАварийногоКомиссара</field>
+			<title>Выдана карта аварийного комиссара</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВыездАварийногоКомиссара</field>
+			<title>Выезд аварийного комиссара</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВыплатаБезСправок</field>
+			<title>Выплата без справок</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ГенеральныйДоговор</field>
+			<title>Генеральный договор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ГенеральныйДоговорСтрахования</field>
+			<title>Генеральный договор / Коллективный договор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ГрафикНачислений</field>
+			<title>График начислений</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ГрубыеНарушения</field>
+			<title>Грубые нарушения страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ГруппыИнвалидности</field>
+			<title>Группы инвалидности</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДанныеВозвратаДС</field>
+			<title>Данные возврата ДС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Дата</field>
+			<title>Дата</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаВыдачи</field>
+			<title>Дата выдачи</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаДиагностическойКарты</field>
+			<title>Дата диагностической карты</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаЗаключенияДоговораОПредоставленииКредита</field>
+			<title>Дата заключения договора о предоставлении кредита</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаЗалоговогоДокумента</field>
+			<title>Дата залогового документа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаЗапретаРедактированияДокументов</field>
+			<title>Дата запрета редактирования документов</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаКвитанцииА7</field>
+			<title>Дата квитанции А7</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаКредитногоДоговора</field>
+			<title>Дата кредитного договора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаРасчетаКурса</field>
+			<title>Дата курса</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаНаправленияОформмленногоПолиса</field>
+			<title>Дата направления оформленного полиса</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаНачала</field>
+			<title>Дата начала</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаНачалаДействияДопСоглашения</field>
+			<title>Дата начала действия доп. соглашения</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаНачисления</field>
+			<title>Дата начисления</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаОкончания</field>
+			<title>Дата окончания</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаОкончанияКредитногоДоговора</field>
+			<title>Дата окончания кредитного договора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаОкончанияМноголетнегоДоговора</field>
+			<title>Дата окончания многолетнего договора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаОкончанияТитула</field>
+			<title>Дата окончания титула</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаОкончанияТО</field>
+			<title>Дата окончания ТО</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаСоздания</field>
+			<title>Дата создания</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДвиженияДокумента</field>
+			<title>Движения документа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДВОУ</field>
+			<title>ДВОУ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДиагоностическаяКарта</field>
+			<title>Диаг. карта (серия, номер)</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДоПервогоСтраховогоСлучая</field>
+			<title>До первого страхового случая</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Ссылка</field>
+			<title>Договор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДокументОснование</field>
+			<title>Документ основание</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТалонТО</field>
+			<title>Документ ТО (серия, номер)</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДоляВыгодоприобретателя</field>
+			<title>Доля выгодоприобретателя</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Доначисление</field>
+			<title>Доначисление</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДопОборудование</field>
+			<title>Доп оборудование</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДоплатаВозврат</field>
+			<title>Доплата возврат</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДополнительныеОпции</field>
+			<title>Дополнительные опции</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДополнительныеРеквизиты</field>
+			<title>Дополнительные реквизиты</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДополнительныеРеквизитыРисков</field>
+			<title>Дополнительные реквизиты рисков</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДополнительныеУсловия</field>
+			<title>Дополнительные условия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Допущенные</field>
+			<title>Допущенные</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДопущенныеКУправлению</field>
+			<title>Допущенные к управлению</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаСчетКогоСледует</field>
+			<title>За счет кого следует</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗагруженЧерезЕГАРАНТ</field>
+			<title>Загружен через Е-ГАРАНТ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗадолженностьПоМноголетнемуДоговору</field>
+			<title>Задолженность по многолетнему договору</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Заключивший</field>
+			<title>Заключивший</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗапросДанныхПоПрошломуПолисуСобственника</field>
+			<title>Запрос данных по прошлому полису собственника</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПоКонкурсу</field>
+			<title>Запрос КБМ «по конкурсу»</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗапросКБМСобственника</field>
+			<title>Запрос КБМ собственника</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗапросТО</field>
+			<title>Запрос ТО</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Застрахованные</field>
+			<title>Застрахованные</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Застрахованный</field>
+			<title>Застрахованный</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИдентификаторАгента</field>
+			<title>Идентификатор агента</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИдентификаторРСА</field>
+			<title>Идентификатор РСА</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИзменениеКомиссии</field>
+			<title>Изменение комиссии</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИзменениеПремии</field>
+			<title>Изменение премии</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИзменениеСтраховойСуммы</field>
+			<title>Изменение страховой суммы</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИмеютсяГрубыеНарушения</field>
+			<title>Имеются грубые нарушения</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Век21_ИндивидуальныеВидыСпорта</field>
+			<title>Индивидуальные виды спорта</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИндивидуальныеПрограммы</field>
+			<title>Индивидуальные программы для каждого застрахованного</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИндивидуальныеПрограммыСтрахования</field>
+			<title>Индивидуальные программы страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИндивидуальныеРиски</field>
+			<title>Индивидуальные риски</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИндивидуальныеСтраховыеСуммы</field>
+			<title>Индивидуальные страховые суммы</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИнойХарактерИспользованияТС</field>
+			<title>Иной характер использования ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИнфоОДругихДействующихДоговорах</field>
+			<title>Инфо о других действующих договорах</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИспользованиеПрограммСтрахования</field>
+			<title>Использование программ страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИспользоватьНовуюРедакциюУчетаОплатИКомиссии</field>
+			<title>Использовать новую редакцию учета оплат и комиссии</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИспользоватьРискиВПланеПлатежей</field>
+			<title>Использовать риски в плане платежей</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИспорченныйБланк</field>
+			<title>Испорченный бланк</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИсторияИзменений</field>
+			<title>История изменений</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИсточникДокумента</field>
+			<title>Источник документа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ИсточникДокументаРасширенный</field>
+			<title>Источник документа расширенный</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КаналПродаж</field>
+			<title>Канал продаж</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Категория</field>
+			<title>Категория</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КатегорияТС</field>
+			<title>Категория ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КлассБонусМалус</field>
+			<title>Класс "бонус-малус"</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КодАктивации</field>
+			<title>Код активации</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоДней</field>
+			<title>Количество дней</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоДнейНаОднуПоездку</field>
+			<title>Количество дней на одну поездку</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоЗастрахованных</field>
+			<title>Количество застрахованных</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоКлючей</field>
+			<title>Количество ключей</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоМест</field>
+			<title>Количество мест</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоУбытков</field>
+			<title>Количество убытков</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Комиссия</field>
+			<title>Комиссия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КомиссияРег</field>
+			<title>Комиссия рег</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Комментарий</field>
+			<title>Комментарий</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КБМ</field>
+			<title>Коэффициент безаварийности</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоэффициентКБМ</field>
+			<title>Коэффициент КБМ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоэффициентыОСАГО</field>
+			<title>Коэффициенты ОСАГО</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Краткосрочный</field>
+			<title>Краткосрочный договор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КратностьВзаиморасчетов</field>
+			<title>Кратность</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КредитнаяПролонгация</field>
+			<title>Кредитная пролонгация</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КредитноеТС</field>
+			<title>Кредитное ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КредитныйДоговор</field>
+			<title>Кредитный договор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КроссПродажа</field>
+			<title>Кросс продажа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Купон</field>
+			<title>Купон</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Куратор</field>
+			<title>Куратор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УдалитьОтветственныйМенеджер</field>
+			<title>Куратор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КурсВзаиморасчетов</field>
+			<title>Курс</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Лизингодатель</field>
+			<title>Лизингодатель</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Лизингополучатель</field>
+			<title>Лизингополучатель</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЛьготнаяКатегория</field>
+			<title>Льготная категория</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЛьготнаяПролонгация</field>
+			<title>Льготная пролонгация</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Малоубыточный</field>
+			<title>Малоубыточный</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>МассовоеСтрахование</field>
+			<title>Массовое страхование</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>МестоРаботы</field>
+			<title>Место работы</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Миграция</field>
+			<title>Миграция</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>МногократныйВыезд</field>
+			<title>Многократный выезд</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Многолетний</field>
+			<title>Многолетний</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Мультидрайв</field>
+			<title>Мультидрайв</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НаличиеДетейДо14Лет</field>
+			<title>Наличие детей до14 лет</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НаличиеСправок</field>
+			<title>Наличие справок</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НаценкаКурса</field>
+			<title>Наценка курса (%)</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Век21_НеИспользоватьКросс</field>
+			<title>Не использовать кросс</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НеНазначатьНомерАвтоматически</field>
+			<title>Не назначать номер автоматически</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НеПодлежитПерестрахованию</field>
+			<title>Не подлежит перестрахованию</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПерестрахованиеРСА</field>
+			<title>Необходимо перестрахование РСА</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НесколькоВыгодоприбретателей</field>
+			<title>Несколько выгодоприобретателей</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НесколькоВыгодоприобретателей</field>
+			<title>Несколько выгодоприобретателей</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НесколькоЗастрахованных</field>
+			<title>Несколько застрахованных</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НесколькоОбъектов</field>
+			<title>Несколько объектов</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НовоеТС</field>
+			<title>Новое ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НовыйКлиент</field>
+			<title>Новый клиент</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерДокумента</field>
+			<title>Номер</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерБСО</field>
+			<title>Номер БСО</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерЗалоговогоДокумента</field>
+			<title>Номер залогового документа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерКредитногоДоговора</field>
+			<title>Номер кредитного договора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерКупона</field>
+			<title>Номер купона</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерПартнера</field>
+			<title>Номер партнера</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерРСА</field>
+			<title>Номер РСА</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОбъектСтрахования</field>
+			<title>Объект страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОбъектыИРиски</field>
+			<title>Объекты и риски</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОбъектыСтрахования</field>
+			<title>Объекты страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОплатаОтСтрахователя</field>
+			<title>Оплата от страхователя (иначе от агента)</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОплаченныйРанееВзнос</field>
+			<title>Оплаченный ранее взнос</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Организация</field>
+			<title>Организация</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОрганизацияУдерживаетКВ</field>
+			<title>Организация удерживает комиссию</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОснованиеИспользованияТС</field>
+			<title>Основание использования ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОснованиеПериодаОтветственности</field>
+			<title>Основание периода ответственности</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОсобыеОтметки</field>
+			<title>Особые отметки</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОсобыеУсловияСтрахования</field>
+			<title>Особые условия страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОстатокСсуднойЗадолженности</field>
+			<title>Остаток ссудной задолженности</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОтветственностьПослеОсмотраТС</field>
+			<title>Ответственность после осмотра ТС и подписания акта осмотра сторонами</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОтветственностьПослеРегистрацииТС</field>
+			<title>Ответственность после регистрации ТС в ГИБДД</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОтложенноеУточнениеУсловийДоговора</field>
+			<title>Отложенное уточнение условий договора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОтношениеВыгодоприобретателяКЗастрахованному</field>
+			<title>Отношение  к застрахованному</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Ошибки</field>
+			<title>Ошибки</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПартнерПоПродажеПолиса</field>
+			<title>Партнер по продаже полиса</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПервичноеСохранение</field>
+			<title>Первичное сохранение</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПервоначальныйДоговор</field>
+			<title>Первоначальный договор</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПереходИзДругойКомпании</field>
+			<title>Переход из другой компании</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПериодичностьПогасительныхПлатежейПоКредиту</field>
+			<title>Периодичность погасительных платежей по кредиту</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПериодыИспользования</field>
+			<title>Периоды использования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПланПлатежей</field>
+			<title>План платежей</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Подписант</field>
+			<title>Подписант</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПодписантДатаДоверенности</field>
+			<title>Подписант дата доверенности</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПодписантДоверенность</field>
+			<title>Подписант доверенность</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПодписантФИО</field>
+			<title>Подписант ФИО</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПодразделениеОрганизации</field>
+			<title>Подразделение</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПодразделениеОрганизацииКуратора</field>
+			<title>Подразделение куратора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПометкаУдаления</field>
+			<title>Пометка удаления</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПорталСоздан</field>
+			<title>Портал создан</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПорядокОплаты</field>
+			<title>Порядок оплаты</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПредставлениеРиска</field>
+			<title>Представление риска</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПредстраховойОсмотр</field>
+			<title>Предстраховой осмотр</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПредыдущаяКомпания</field>
+			<title>Предыдущая компания</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПредыдущаяСерия</field>
+			<title>Предыдущая серия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПредыдущийНомер</field>
+			<title>Предыдущий номер</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПремииПоМноголетнемуДоговору</field>
+			<title>Премии по многолетнему договору</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Премия</field>
+			<title>Премия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПремияРег</field>
+			<title>Премия (рег)</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Век21_ПремияДоКроссов</field>
+			<title>Премия до кроссов</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПремияИзмененаВручную</field>
+			<title>Премия изменена вручную</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПризнакГостайны</field>
+			<title>Признак гостайны</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПризнакиИзменений</field>
+			<title>Признаки изменений</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПрикрепленныеДокументы</field>
+			<title>Прикрепленные документы</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Прицеп</field>
+			<title>Прицеп</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПричинаОтсутсвияДокументаОсмотра</field>
+			<title>Причина отсутсвия документа осмотра</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПричинаРасторжения</field>
+			<title>Причина расторжения</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПробегТС</field>
+			<title>Пробег ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Проведен</field>
+			<title>Проведен</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Программа_удалить</field>
+			<title>Программа удалить</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПрограммыСопровождения</field>
+			<title>Программы сопровождения</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПрограммыСтрахования</field>
+			<title>Программы страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Продавец</field>
+			<title>Продавец</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Промокод</field>
+			<title>Промокод</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПротивоугоннаяСистема</field>
+			<title>Противоугонная система</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПротивоугонныеСистемы</field>
+			<title>Противоугонные системы</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПротивоугонныеСистемыОтсутствуют</field>
+			<title>Противоугонные системы отсутствуют</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Профессии</field>
+			<title>Профессии</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПрофессиональноеЗанятиеСпортом</field>
+			<title>Профессиональное занятие спортом</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Профессия</field>
+			<title>Профессия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентСкидкиЗаСчетКВ</field>
+			<title>Процент скидки за счет КВ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентСкидкиПоПромокоду</field>
+			<title>Процент скидки по промокоду</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентнаяСтавкаПоКредиту</field>
+			<title>Процентная ставка по кредиту</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РазмерПогасительногоПлатежа</field>
+			<title>Размер погасительного платежа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Рассрочка</field>
+			<title>Рассрочка</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Рассчет</field>
+			<title>Рассчет</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РасторжениеДоговораДата</field>
+			<title>Расторжение договора дата</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РасчетыВУЕ</field>
+			<title>Расчеты в у.е.</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РасчетыЧерезАгента</field>
+			<title>Расчеты через агента</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТерриторияПокрытия</field>
+			<title>Расширение покрытия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РегиональнаяПрограмма</field>
+			<title>Региональная программа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РегистрационныйЗнакПрицепа</field>
+			<title>Регистрационный знак прицепа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Редакция</field>
+			<title>Редакция</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РучнаяКорректировкаПремии</field>
+			<title>Ручная корректировка премии</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РучноеИзменениеПремииПриРасторжении</field>
+			<title>Ручное изменение премии при расторжении</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>РыночнаяСтоимостьТС</field>
+			<title>Рыночная стоимость ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СемейныйПолис</field>
+			<title>Семейный полис</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СервиснаяКомпания</field>
+			<title>Сервисная компания</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СервисныеКомпании</field>
+			<title>Сервисные компании</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СерияДокумента</field>
+			<title>Серия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СерияБСО</field>
+			<title>Серия БСО</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Номер</field>
+			<title>Системный номер</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СкидкаЗаСчетКВ</field>
+			<title>Скидка за счет КВ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СкидкиНаценки</field>
+			<title>Скидки наценки</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СменаКБМ</field>
+			<title>Смена КБМ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Собственник</field>
+			<title>Собственник</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СобственникДопущенКУправлению</field>
+			<title>Собственник допущен к управлению</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СобственникТС</field>
+			<title>Собственник ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СогласноШтатномуРасписанию</field>
+			<title>Согласно штатному расписанию</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СоставЗастрахованных</field>
+			<title>Состав застрахованных</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Сострахован</field>
+			<title>Сострахован</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Спецпрограмма</field>
+			<title>Спецпрограмма</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СписокВнесенныхИзменений</field>
+			<title>Список внесенных изменений</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СписокЛицОграничен</field>
+			<title>Список лиц ограничен</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СписокЛПУ</field>
+			<title>Список ЛПУ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СписокУдостоверяющихДокументов</field>
+			<title>Список удостоверяющих документов</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>адс_уцс_СпособЗаключенияДоговора</field>
+			<title>Способ заключения договора (АИС РСА)</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СпособОплаты</field>
+			<title>Способ оплаты</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Срок</field>
+			<title>Срок</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтажМультидрайв</field>
+			<title>Стаж мультидрайв</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Статус</field>
+			<title>Статус</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтатусОплатыДоговора</field>
+			<title>Статус оплаты договора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтатусОсмотра</field>
+			<title>Статус осмотра</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтоимостьАвтоСогласованоСЭкспертом</field>
+			<title>Стоимость авто согласовано с экспертом</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтоимостьБагажа</field>
+			<title>Стоимость багажа</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтоимостьТС</field>
+			<title>Стоимость ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтоимостьТура</field>
+			<title>Стоимость тура</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Страны</field>
+			<title>Страны</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтрахованиеАвтопарка</field>
+			<title>Страхование автопарка</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтрахованиеПарка</field>
+			<title>Страхование парка</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+			<title>Страхователь</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтраховательДопущенКУправлению</field>
+			<title>Страхователь допущен к управлению</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтраховаяКомпания</field>
+			<title>Страховая компания</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтраховаяСумма</field>
+			<title>Страховая сумма</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтраховаяСуммаРег</field>
+			<title>Страховая сумма (рег)</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтраховойПродукт</field>
+			<title>Страховой продукт</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СубагентB2B</field>
+			<title>Субагент B2B</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаКредита</field>
+			<title>Сумма кредита</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТаблицаКоэффициентовРасчета</field>
+			<title>Таблица коэффициентов расчета</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТекущийПользователь</field>
+			<title>Текущий пользователь</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТерриториальноеУправление</field>
+			<title>Территориальное управление</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Территория</field>
+			<title>Территория</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТерриторияИспользованияТС</field>
+			<title>Территория использования ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТехкоррекцияБезИзмененияКоэффициентов</field>
+			<title>Техкоррекция без изменения коэффициентов</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТипСрока</field>
+			<title>Тип срока</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТипТС</field>
+			<title>Тип ТС</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Транзит</field>
+			<title>Транзит</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТранспортноеСредство</field>
+			<title>Транспортное средство</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТСЗарегистрированоВИГ</field>
+			<title>ТС зарегистрировано в ИГ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТСПринадлежитИнвалиду</field>
+			<title>ТС принадлежит инвалиду</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Убыточность</field>
+			<title>Убыточность</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Удалить_СкидкаЗаСчетКВ</field>
+			<title>Удалить скидка за счет КВ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УдерживаемаяКомиссия</field>
+			<title>Удерживаемая комиссия</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УдерживаемаяКомиссияРег</field>
+			<title>Удерживаемая комиссия рег</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УниверсальнаяДатаЗаписиВМиллисекундах</field>
+			<title>Универсальная дата записи в миллисекундах</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УсловиеСтрахования</field>
+			<title>Условие страхования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УсловияВыплатыКредита</field>
+			<title>Условия выплаты кредита</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УчетЭлементарныхРисков</field>
+			<title>Учет элементарных рисков</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УчитыватьИзносПриУбытке</field>
+			<title>Учитывать износ при убытке</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ФиксСписокЗастрахованныхДляВыбора</field>
+			<title>Фикс список застрахованных для выбора</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ФиксированнаяСкидкаЗаСчетКВ</field>
+			<title>Фиксированная скидка за счет КВ</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ФормулаПремии</field>
+			<title>Формула премии</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ФормулаПремииЧислом</field>
+			<title>Формула премии числом</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЦельИспользования</field>
+			<title>Цель использования</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЦельИспользованияКредита</field>
+			<title>Цель использования кредита</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЦельПоездки</field>
+			<title>Цель поездки</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЦепочкаПродаж</field>
+			<title>Цепочка продаж</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЧисленностьПарка</field>
+			<title>Численность парка</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЭлектронноеБСО</field>
+			<title>Электронное БСО</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Век21_ЭлектроннаяОферта</field>
+			<title>Электронный договор(оферта)</title>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЭлементарныеРиски</field>
+			<title>Элементарные риски</title>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<left xsi:type="dcscor:Field">ПерестрахованиеРСА</left>
+			<comparisonType>Equal</comparisonType>
+			<right xsi:type="xs:boolean">false</right>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<left xsi:type="dcscor:Field">СтраховойПродукт</left>
+			<comparisonType>Equal</comparisonType>
+			<right xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config" xsi:type="d4p1:CatalogRef.СтраховыеПродукты">342ec861-3f65-11e6-9e61-7824af33beda</right>
+		</item>
+	</filter>
+</Settings>

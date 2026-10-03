@@ -4,10 +4,13 @@ import com.example.condition.service.converter.ConditionConverterService;
 import com.example.condition.service.converter.parser.DcsFilterParser;
 import com.example.condition.service.converter.transformer.CanonicalConditionBuilder;
 import com.example.condition.service.converter.transformer.TransformerConfig;
+import com.conditionservice.repository.ConditionRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 /**
  * Контекстный срез-тест конфигурации {@link ConverterConfig}.
@@ -26,7 +29,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ConverterConfigTest {
 
         private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
-                        .withUserConfiguration(ConverterConfig.class, ConditionConverterService.class);
+                        .withUserConfiguration(ConverterConfig.class, ConditionConverterService.class)
+                        // Конвертер зависит от ConditionRepository (Upsert в saveOrConvert) и
+                        // ObjectMapper (каноническая сериализация для хеша), но срез поднимается
+                        // без web/JPA автоконфигурации — недостающие бины добавляем вручную.
+                        .withBean(ConditionRepository.class,
+                                        () -> mock(ConditionRepository.class))
+                        .withBean(ObjectMapper.class, ObjectMapper::new);
 
         @Test
         void createsAllConverterBeansFromExternalProperties() {

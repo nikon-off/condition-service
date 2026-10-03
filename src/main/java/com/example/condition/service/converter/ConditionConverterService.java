@@ -1,7 +1,6 @@
 package com.example.condition.service.converter;
 
 import com.example.condition.service.converter.dto.CanonicalConditionDto;
-import com.example.condition.service.converter.dto.SavedCondition;
 import com.example.condition.service.converter.exception.ConversionException;
 import com.example.condition.service.converter.parser.DcsFilterParser;
 import com.example.condition.service.converter.transformer.CanonicalConditionBuilder;
@@ -48,9 +47,10 @@ public class ConditionConverterService {
     private final ConditionRepository conditionRepository;
 
     /**
-     * ObjectMapper для канонической сериализации: без пробелов, ключи объекта
-     * сортируются ({@link SerializationFeature#ORDER_MAP_ENTRIES_BY_KEYS}), чтобы
-     * одинаковые по смыслу условия давали один и тот же {@code condition_key}.
+     * ObjectMapper для канонической сериализации: без пробелов и отступов
+     * ({@code INDENT_OUTPUT=false}), ключи объекта сортируются
+     * ({@link SerializationFeature#ORDER_MAP_ENTRIES_BY_KEYS}), чтобы одинаковые
+     * по смыслу условия давали один и тот же {@code condition_key}.
      * Потокобезопасен после конфигурации (копия создаётся один раз).
      */
     private final ObjectMapper canonicalJsonMapper;
@@ -75,6 +75,7 @@ public class ConditionConverterService {
         this.conditionRepository = conditionRepository;
         ObjectMapper base = objectMapper != null ? objectMapper : new ObjectMapper();
         this.canonicalJsonMapper = base.copy()
+                .disable(SerializationFeature.INDENT_OUTPUT)
                 .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
     }
 
@@ -114,17 +115,16 @@ public class ConditionConverterService {
      * </ol>
      *
      * @param xmlFilter сырой XML настроек DCS (поле {@code xmlFilter})
-     * @return результат сохранения: бизнес-ключ, каноническое условие и id записи
+     * @return персистентный id записи в таблице {@code conditions}
      * @throws ConversionException если входной XML невалиден или каноническое
      *                             условие не удалось сериализовать
      */
     @Transactional
-    public SavedCondition saveOrConvert(String xmlFilter) {
+    public Long saveOrConvert(String xmlFilter) {
         CanonicalConditionDto dto = convert(xmlFilter);
         String conditionKey = generateConditionKey(dto);
         String payloadJson = toCanonicalJson(dto);
-        Long id = conditionRepository.upsert(conditionKey, payloadJson);
-        return new SavedCondition(conditionKey, dto, id);
+        return conditionRepository.upsert(conditionKey, payloadJson);
     }
 
     /**

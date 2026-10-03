@@ -1,7 +1,6 @@
 package com.conditionservice.integration;
 
 import com.example.condition.service.converter.ConditionConverterService;
-import com.example.condition.service.converter.dto.SavedCondition;
 import com.example.condition.service.converter.exception.ConversionException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,23 +17,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * Интеграционный тест Upsert-логики сохранения канонического условия
- * против реального PostgreSQL 17 в Testcontainers.
+ * Интеграционный тест персистентной стадии конвертации
+ * ({@link ConditionConverterService#saveOrConvert}) против реального
+ * PostgreSQL 17 в Testcontainers.
  *
  * <p>
- * Проверяются критерии приёмки ТЗ №3:
+ * Проверяются сценарии Insert/Update Upsert-логики (доработка ТЗ №3):
  * </p>
  * <ul>
- * <li>повторная конвертация одного и того же XML не создаёт дублей
- * (ON CONFLICT (condition_key) DO UPDATE);</li>
- * <li>{@code payload} всегда хранится как JSON-объект
+ * <li><b>Insert:</b> сохранение условия из {@code test-filter.xml} создаёт
+ * запись, чей {@code payload} — валидный JSON-объект
  * ({@code jsonb_typeof(payload) = 'object'});</li>
- * <li>при повторном вызове {@code updated_at} обновляется, а
- * {@code condition_key} и структура {@code payload} остаются прежними;</li>
+ * <li><b>Update:</b> повторное сохранение того же XML не создаёт дублей
+ * (ON CONFLICT (condition_key) DO UPDATE), возвращает тот же id,
+ * а {@code updated_at} обновляется;</li>
  * <li>невалидный XML → {@link ConversionException}, запись не создаётся.</li>
  * </ul>
  */
-class ConditionUpsertIntegrationTest extends BaseIntegrationTest {
+class ConditionPersistenceIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
     private ConditionConverterService converterService;
@@ -46,77 +46,68 @@ class ConditionUpsertIntegrationTest extends BaseIntegrationTest {
 
     private static final String TEST_FILTER_XML = readTestFilterXml();
 
-    private static final String COUNT_SQL = "SELECT count(*) FROM conditions WHERE condition_key = ?";
+    private static final String COUNT_BY_ID_SQL = "SELECT count(*) FROM conditions WHERE id = ?";
 
-    private static final String PAYLOAD_SQL = "SELECT payload FROM conditions WHERE condition_key = ?";
+    private static final String PAYLOAD_TYPE_BY_ID_SQL = "SELECT jsonb_typeof(payload) FROM conditions WHERE id = ?";
 
-    private static final String PAYLOAD_TYPE_SQL = "SELECT jsonb_typeof(payload) FROM conditions WHERE condition_key = ?";
+    private static final String PAYLOAD_BY_ID_SQL = "SELECT payload FROM conditions WHERE id = ?";
 
-    private static final String UPDATED_AT_SQL = "SELECT updated_at FROM conditions WHERE condition_key = ?";
+    private static final String UPDATED_AT_BY_ID_SQL = "SELECT updated_at FROM conditions WHERE id = ?";
 
+    /**
+     * Сценарий Insert: условие сохраняется, payload — JSON-объект.
+     */
     @Test
     void saveOrConvertInsertsConditionWithJsonObjectPayload() {
-        SavedCondition saved = converterService.saveOrConvert(TEST_FILTER_XML);
+        Long id = converterService.saveOrConvert(TEST_FILTER_XML);
 
-        // Ключ — детерминированный SHA-256 в hex (64 символа, нижний регистр).
-        assertThat(saved.conditionKey()).matches("[0-9a-f]{64}");
-        assertThat(saved.id()).isNotNull();
-        assertThat(saved.payload()).isNotNull();
+        assertThat(id).isNotNull();
+        assertThat(jdbcTemplate.queryForObject(COUNT_BY_ID_SQL, Long.class, id)).isEqualTo(1L);
 
-        // В БД ровно одна запись с этим ключом.
-        Long count = jdbcTemplate.queryForObject(COUNT_SQL, Long.class, saved.conditionKey());
-        assertThat(count).isEqualTo(1L);
-
-        // Payload — JSON-объект (удовлетворяет CHECK jsonb_typeof(payload) = 'object').
-        String type = jdbcTemplate.queryForObject(
-                PAYLOAD_TYPE_SQL, String.class, saved.conditionKey());
+        // CHECK-ограничение jsonb_typeof(payload) = 'object' выполнено.
+        String type = jdbcTemplate.queryForObject(PAYLOAD_TYPE_BY_ID_SQL, String.class, id);
         assertThat(type).isEqualTo("object");
 
-        // Структура payload соответствует каноническому условию из test-filter.xml:
+        // Структура соответствует каноническому условию из test-filter.xml:
         // logic + 2 правила (AND-группа).
-        JsonNode stored = readPayload(saved.conditionKey());
-        assertThat(stored).isNotNull();
+        JsonNode stored = readPayload(id);
         assertThat(stored.isObject()).isTrue();
         assertThat(stored.path("logic").asText()).isEqualTo("AND");
         assertThat(stored.path("rules")).hasSize(2);
     }
 
+    /**
+     * Сценарий Update: повторное сохранение того же XML не создаёт дублей,
+     * id тот же, updated_at обновился.
+     */
     @Test
     void repeatedSaveOrConvertUpdatesWithoutDuplicates() {
-        SavedCondition first = converterService.saveOrConvert(TEST_FILTER_XML);
+        Long firstId = converterService.saveOrConvert(TEST_FILTER_XML);
         Timestamp firstUpdatedAt = jdbcTemplate.queryForObject(
-                UPDATED_AT_SQL, Timestamp.class, first.conditionKey());
+                UPDATED_AT_BY_ID_SQL, Timestamp.class, firstId);
 
         // Гарантируем различимую разницу во времени между NOW() вызовами.
         sleepMillis(20);
-        SavedCondition second = converterService.saveOrConvert(TEST_FILTER_XML);
+        Long secondId = converterService.saveOrConvert(TEST_FILTER_XML);
         Timestamp secondUpdatedAt = jdbcTemplate.queryForObject(
-                UPDATED_AT_SQL, Timestamp.class, second.conditionKey());
+                UPDATED_AT_BY_ID_SQL, Timestamp.class, secondId);
 
         // ON CONFLICT DO UPDATE RETURNING id возвращает id существующей строки.
-        assertThat(second.id()).isEqualTo(first.id());
+        assertThat(secondId).isEqualTo(firstId);
 
         // Дублей нет.
-        Long count = jdbcTemplate.queryForObject(COUNT_SQL, Long.class, first.conditionKey());
-        assertThat(count).isEqualTo(1L);
-
-        // Бизнес-ключ детерминирован и не меняется.
-        assertThat(second.conditionKey()).isEqualTo(first.conditionKey());
-
-        // Структура payload не изменилась.
-        JsonNode stored = readPayload(first.conditionKey());
-        JsonNode expected = MAPPER.valueToTree(second.payload());
-        assertThat(stored).isEqualTo(expected);
+        assertThat(jdbcTemplate.queryForObject(COUNT_BY_ID_SQL, Long.class, firstId)).isEqualTo(1L);
 
         // updated_at обновился при повторном сохранении.
         assertThat(secondUpdatedAt).isAfter(firstUpdatedAt);
     }
 
+    /**
+     * Невалидный XML: ConversionException, запись не создаётся.
+     */
     @Test
     void invalidXmlThrowsConversionExceptionAndPersistsNothing() {
-        String invalidXml = "<Settings><filter>";
-
-        assertThatThrownBy(() -> converterService.saveOrConvert(invalidXml))
+        assertThatThrownBy(() -> converterService.saveOrConvert("<Settings><filter>"))
                 .isInstanceOf(ConversionException.class)
                 .hasMessageContaining("Невалидный XML-фильтр");
 
@@ -129,8 +120,8 @@ class ConditionUpsertIntegrationTest extends BaseIntegrationTest {
      * Читает JSONB-колонку payload как строку и разбирает в {@link JsonNode}.
      * JdbcTemplate не умеет конвертировать PGobject в JsonNode напрямую.
      */
-    private JsonNode readPayload(String conditionKey) {
-        String json = jdbcTemplate.queryForObject(PAYLOAD_SQL, String.class, conditionKey);
+    private JsonNode readPayload(Long id) {
+        String json = jdbcTemplate.queryForObject(PAYLOAD_BY_ID_SQL, String.class, id);
         try {
             return MAPPER.readTree(json);
         } catch (JsonProcessingException e) {

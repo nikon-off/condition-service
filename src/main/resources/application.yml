@@ -86,3 +86,12 @@ info:
     # Подставляется Maven'ом при сборке (@...@ фильтрация включена в spring-boot-starter-parent)
     version: @project.version@
     java-version: ${java.version}
+
+# Настройки конвертера XML-фильтров 1С DCS (модуль xml_to_json)
+converter:
+  transformer:
+    # Строгий режим имён полей: false — snake_case-нормализация,
+    # true — имена из XML (регистр и точки) сохраняются как есть.
+    preserve-original-field-names: false
+    # Явный маппинг «сырое имя 1С» → «каноническое имя» (применяется до нормализации)
+    field-mapping: {}

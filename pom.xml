@@ -81,6 +81,14 @@
             <version>${logstash-logback-encoder.version}</version>
         </dependency>
 
+        <!-- Парсинг XML-фильтров 1С (DCS): Jackson XML dataformat (XmlMapper).
+             Версия управляется Spring Boot BOM (jackson-bom) — не указываем явно,
+             чтобы не конфликтовать с версией 2.21.2 из исходного проекта xml_to_json. -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

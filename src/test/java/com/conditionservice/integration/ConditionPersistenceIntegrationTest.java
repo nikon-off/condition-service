@@ -2,6 +2,7 @@ package com.conditionservice.integration;
 
 import com.example.condition.service.converter.ConditionConverterService;
 import com.example.condition.service.converter.exception.ConversionException;
+import com.conditionservice.repository.ConditionRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,6 +41,9 @@ class ConditionPersistenceIntegrationTest extends BaseIntegrationTest {
     private ConditionConverterService converterService;
 
     @Autowired
+    private ConditionRepository conditionRepository;
+
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -62,6 +66,10 @@ class ConditionPersistenceIntegrationTest extends BaseIntegrationTest {
         Long id = converterService.saveOrConvert(TEST_FILTER_XML);
 
         assertThat(id).isNotNull();
+
+        // Проверка через JPA-репозиторий: ровно одна запись.
+        assertThat(conditionRepository.count()).isEqualTo(1L);
+        // Проверка через JDBC: запись существует по возвращённому id.
         assertThat(jdbcTemplate.queryForObject(COUNT_BY_ID_SQL, Long.class, id)).isEqualTo(1L);
 
         // CHECK-ограничение jsonb_typeof(payload) = 'object' выполнено.
@@ -95,7 +103,8 @@ class ConditionPersistenceIntegrationTest extends BaseIntegrationTest {
         // ON CONFLICT DO UPDATE RETURNING id возвращает id существующей строки.
         assertThat(secondId).isEqualTo(firstId);
 
-        // Дублей нет.
+        // Дублей нет: в таблице ровно одна запись (JPA count + SQL count по id).
+        assertThat(conditionRepository.count()).isEqualTo(1L);
         assertThat(jdbcTemplate.queryForObject(COUNT_BY_ID_SQL, Long.class, firstId)).isEqualTo(1L);
 
         // updated_at обновился при повторном сохранении.
@@ -111,6 +120,7 @@ class ConditionPersistenceIntegrationTest extends BaseIntegrationTest {
                 .isInstanceOf(ConversionException.class)
                 .hasMessageContaining("Невалидный XML-фильтр");
 
+        assertThat(conditionRepository.count()).isZero();
         Long total = jdbcTemplate.queryForObject(
                 "SELECT count(*) FROM conditions", Long.class);
         assertThat(total).isZero();

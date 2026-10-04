@@ -89,6 +89,15 @@
             <artifactId>jackson-dataformat-xml</artifactId>
         </dependency>
 
+        <!-- Lombok: сокращение boilerplate-кода в DTO (@Data, @Builder).
+             Версия управляется BOM Spring Boot 3.5.9 (свойство lombok.version).
+             optional=true — зависимость не попадает в исполняемый fat-jar. -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

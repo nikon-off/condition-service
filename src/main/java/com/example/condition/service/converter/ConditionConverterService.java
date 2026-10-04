@@ -1,6 +1,7 @@
 package com.example.condition.service.converter;
 
 import com.example.condition.service.converter.dto.CanonicalConditionDto;
+import com.example.condition.service.converter.dto.SavedCondition;
 import com.example.condition.service.converter.exception.ConversionException;
 import com.example.condition.service.converter.parser.DcsFilterParser;
 import com.example.condition.service.converter.transformer.CanonicalConditionBuilder;
@@ -27,7 +28,7 @@ import java.util.HexFormat;
  * {@link CanonicalConditionDto};</li>
  * <li>{@link CanonicalConditionBuilder#build(CanonicalConditionDto)} —
  * нормализация в канонический формат (поля, операторы, значения);</li>
- * <li>{@link #saveOrConvert(String)} — генерация детерминированного
+ * <li>{@link #saveOrConvertWithResult(String)} — генерация детерминированного
  * {@code condition_key} (SHA-256 от канонического JSON) и Upsert в таблицу
  * {@code conditions} по уникальному бизнес-ключу.</li>
  * </ol>
@@ -99,8 +100,9 @@ public class ConditionConverterService {
     }
 
     /**
-     * Конвертирует XML-фильтр в каноническое условие и сохраняет его в БД
-     * идемпотентно (Upsert по {@code condition_key}).
+     * Конвертирует XML-фильтр в каноническое условие, сохраняет его в БД
+     * идемпотентно (Upsert по {@code condition_key}) и возвращает полный
+     * результат операции.
      *
      * <p>
      * Последовательность операций:
@@ -111,8 +113,36 @@ public class ConditionConverterService {
      * канонического JSON условия (без пробелов, ключи отсортированы);</li>
      * <li>сериализация DTO в JSON-строку (объект — удовлетворяет
      * CHECK {@code jsonb_typeof(payload) = 'object'});</li>
-     * <li>вызов {@link ConditionRepository#upsert(String, String)}.</li>
+     * <li>вызов {@link ConditionRepository#upsert(String, String)};</li>
+     * <li>сборка {@link SavedCondition}: id из {@code RETURNING id}, бизнес-ключ
+     * и каноническое условие (единый источник истины для контроллера).</li>
      * </ol>
+     *
+     * @param xmlFilter сырой XML настроек DCS (поле {@code xmlFilter})
+     * @return сохранённое условие: персистентный id, бизнес-ключ и
+     *         каноническое представление
+     * @throws ConversionException если входной XML невалиден или каноническое
+     *                             условие не удалось сериализовать
+     */
+    @Transactional
+    public SavedCondition saveOrConvertWithResult(String xmlFilter) {
+        CanonicalConditionDto dto = convert(xmlFilter);
+        String conditionKey = generateConditionKey(dto);
+        String payloadJson = toCanonicalJson(dto);
+        Long id = conditionRepository.upsert(conditionKey, payloadJson);
+        return new SavedCondition(id, conditionKey, dto);
+    }
+
+    /**
+     * Обёртка над {@link #saveOrConvertWithResult(String)}, возвращающая только
+     * персистентный id.
+     *
+     * <p>
+     * Оставлен для обратной совместимости (используется существующими
+     * интеграционными тестами). Новый код предпочитает
+     * {@link #saveOrConvertWithResult(String)} — он возвращает id, ключ и DTO
+     * за одну операцию без дублирования логики.
+     * </p>
      *
      * @param xmlFilter сырой XML настроек DCS (поле {@code xmlFilter})
      * @return персистентный id записи в таблице {@code conditions}
@@ -121,10 +151,7 @@ public class ConditionConverterService {
      */
     @Transactional
     public Long saveOrConvert(String xmlFilter) {
-        CanonicalConditionDto dto = convert(xmlFilter);
-        String conditionKey = generateConditionKey(dto);
-        String payloadJson = toCanonicalJson(dto);
-        return conditionRepository.upsert(conditionKey, payloadJson);
+        return saveOrConvertWithResult(xmlFilter).id();
     }
 
     /**

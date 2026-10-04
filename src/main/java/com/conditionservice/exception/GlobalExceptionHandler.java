@@ -1,5 +1,6 @@
 package com.conditionservice.exception;
 
+import com.example.condition.service.converter.exception.ConversionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,16 +13,26 @@ import java.util.Map;
 /**
  * Глобальный обработчик ошибок.
  *
- * <p>Обрабатывает:
+ * <p>
+ * Обрабатывает:
  * <ul>
- *   <li>{@link MethodArgumentNotValidException} — ошибки валидации входящих DTO
- *       (HTTP {@code 400 BAD_REQUEST});</li>
- *   <li>{@link GroupNotFoundException} — отсутствие группы условий (HTTP {@code 404});</li>
- *   <li>{@link ConditionNotFoundException} — отсутствие условия отбора (HTTP {@code 404}).</li>
- * </ul></p>
+ * <li>{@link MethodArgumentNotValidException} — ошибки валидации входящих DTO
+ * (HTTP {@code 400 BAD_REQUEST});</li>
+ * <li>{@link ConversionException} — невалидный XML-фильтр 1С в endpoint
+ * {@code /api/v1/conditions/convert} (HTTP {@code 400 BAD_REQUEST});</li>
+ * <li>{@link GroupNotFoundException} — отсутствие группы условий (HTTP
+ * {@code 404});</li>
+ * <li>{@link ConditionNotFoundException} — отсутствие условия отбора (HTTP
+ * {@code 404}).</li>
+ * </ul>
+ * </p>
  *
- * <p>Формат ответа для валидации: {@code Map<String, String>}, где ключ — имя поля DTO,
- * значение — сообщение об ошибке. Порядок сохраняется благодаря {@link LinkedHashMap}.</p>
+ * <p>
+ * Формат ответа для валидации: {@code Map<String, String>}, где ключ — имя поля
+ * DTO,
+ * значение — сообщение об ошибке. Порядок сохраняется благодаря
+ * {@link LinkedHashMap}.
+ * </p>
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -37,10 +48,30 @@ public class GlobalExceptionHandler {
             MethodArgumentNotValidException ex) {
 
         Map<String, String> errors = new LinkedHashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach(error ->
-                errors.put(error.getField(), error.getDefaultMessage()));
+        ex.getBindingResult().getFieldErrors()
+                .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    /**
+     * Обрабатывает ошибку конвертации XML-фильтра 1С DCS (невалидный
+     * XML или ошибку нормализации канонического условия).
+     *
+     * <p>
+     * Парсер выбрасывает {@link IllegalArgumentException}, который сервис
+     * транслирует в {@link ConversionException}; на уровень контроллера он
+     * приходит уже как {@code ConversionException}.
+     * </p>
+     *
+     * @param ex исключение конвертации
+     * @return ответ с HTTP 400 и понятным сообщением об ошибке
+     */
+    @ExceptionHandler(ConversionException.class)
+    public ResponseEntity<Map<String, String>> handleConversionError(ConversionException ex) {
+        Map<String, String> body = new LinkedHashMap<>();
+        body.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
     /**
